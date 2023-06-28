@@ -1,0 +1,48 @@
+name: HOMOL
+
+on:
+  pull_request:
+    branches:
+      - homol
+    types: [ closed ]
+    
+  workflow_dispatch:
+jobs:          
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - name: Preparing branch
+        if: github.event.pull_request.merged == true
+        run: |
+          git fetch origin homol:homol
+          git reset --hard homol
+        
+      - name: Creating Pull Request
+        if: github.event.pull_request.merged == true
+        uses: peter-evans/create-pull-request@v3
+        id: demo-1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update DEV with HOMOL
+          title: '[AUTO PR] Update DEV with HOMOL'
+          body: >
+            Automated PR to updates DEV with HOMOL
+          labels: beta, automated pr
+          reviewers: RomuloLim
+          
+#       - name: Approve PR
+#         uses: juliangruber/approve-pull-request-action@v1
+#         with:
+#           github-token: ${{ secrets.ACTION_SECRET }}
+#           number: ${{ steps.demo-1.outputs.pull-request-number }}
+
+#       - name: Merge PR
+#         uses: juliangruber/merge-pull-request-action@v1
+#         with:
+#           github-token: ${{ secrets.ACTION_SECRET }}
+#           number: ${{ steps.demo-1.outputs.pull-request-number }}
+#           method: squash
