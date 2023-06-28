@@ -1,6 +1,4 @@
 name: 'AUTO PR'
-description: Generate
-author: RomuloLim
 
 env:
   DESTINATION_BRANCH: ${{ github.base_ref == 'main' && 'homol' || 'dev' }}
@@ -30,7 +28,7 @@ jobs:
       - name: Creating Pull Request
         if: github.event.pull_request.merged == true
         uses: peter-evans/create-pull-request@v3
-        id: ${{ github.run_id }}
+        id: GITHUB_RUN_ID
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update DEV with HOMOL
