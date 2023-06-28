@@ -1,9 +1,10 @@
 name: 'PR Auto Update'
 description: 'Creates automaticaly a PR updating Main branch changes to Homol Branch or creates a PR updating Homol changes to Dev.'
-
+branding:
+  icon: bell
+  color: blue
 env:
   DESTINATION_BRANCH: ${{ github.base_ref == 'main' && 'homol' || 'dev' }}
-
 on:
   pull_request:
     branches:
@@ -39,7 +40,6 @@ jobs:
           labels: beta, automated pr
           reviewers: RomuloLim
   
-          
 #       - name: Approve PR
 #         uses: juliangruber/approve-pull-request-action@v1
 #         with:
