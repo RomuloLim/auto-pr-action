@@ -1,9 +1,15 @@
-name: HOMOL
+name: 'AUTO PR'
+description: Generate
+author: RomuloLim
+
+env:
+  DESTINATION_BRANCH: ${{ github.base_ref == 'main' && 'homol' || 'dev' }}
 
 on:
   pull_request:
     branches:
       - homol
+      - main
     types: [ closed ]
     
   workflow_dispatch:
@@ -13,26 +19,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: dev
+          ref: ${{ env.DESTINATION_BRANCH }}
 
       - name: Preparing branch
         if: github.event.pull_request.merged == true
         run: |
-          git fetch origin homol:homol
-          git reset --hard homol
+          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+          git reset --hard ${{ github.base_ref }}
         
       - name: Creating Pull Request
         if: github.event.pull_request.merged == true
         uses: peter-evans/create-pull-request@v3
-        id: demo-1
+        id: ${{ github.run_id }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update DEV with HOMOL
-          title: '[AUTO PR] Update DEV with HOMOL'
+          title: 'Chore: Dump ${{ github.base_ref }} into ${{ env.DESTINATION_BRANCH }}'
           body: >
-            Automated PR to updates DEV with HOMOL
+            Automated PR to dump ${{ github.base_ref }} into ${{ env.DESTINATION_BRANCH }}
           labels: beta, automated pr
           reviewers: RomuloLim
+  
           
 #       - name: Approve PR
 #         uses: juliangruber/approve-pull-request-action@v1
