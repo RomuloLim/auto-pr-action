@@ -31,7 +31,7 @@ The actions works when have a new accepted PR in **Main** branch. The action cre
  height="400" />
  
  ## Can you test?
-Rou can access the repository with the action running and perform a fork [here](https://github.com/RomuloLim/github-actions-test).
+You can access the repository with the action running and perform a fork [here](https://github.com/RomuloLim/github-actions-test).
  
  ## Notes
  - I'm learning english, but if you found an error in this readme, please contact me 😅
