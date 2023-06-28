@@ -1,4 +1,5 @@
-name: 'AUTO PR'
+name: 'PR Auto Update'
+description: 'The actions works when have a new accepted PR in Main branch. The action creates automaticaly a PR updating Main branch changes to Homol Branch, and if this PR is accepted, the action creates a PR updating Homol branch changes to Dev branch changes.'
 
 env:
   DESTINATION_BRANCH: ${{ github.base_ref == 'main' && 'homol' || 'dev' }}
