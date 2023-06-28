@@ -37,3 +37,13 @@ You can access the repository with the action running and perform a fork [here](
  - I'm learning english, but if you found an error in this readme, please contact me 😅
  - Contributions make the open source community an amazing place to learn, inspire and create. all contributions
 are **extremely appreciated**
+
+## Contributors
+<kbd align="center">
+ <a href="https://github.com/RomuloLim" text-decoration="none">
+   <img src="https://avatars.githubusercontent.com/u/37809622?v=4" width="120">
+   <br><br>
+    Rômulo Lima
+   <br><br>
+  </a>
+</kbd>
