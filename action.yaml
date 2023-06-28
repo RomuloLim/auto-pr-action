@@ -1,8 +1,8 @@
 name: 'PR Auto Update'
 description: 'Creates automaticaly a PR updating Main branch changes to Homol Branch or creates a PR updating Homol changes to Dev.'
 branding:
-  icon: bell
-  color: blue
+  icon: git-pull-request
+  color: red
 env:
   DESTINATION_BRANCH: ${{ github.base_ref == 'main' && 'homol' || 'dev' }}
 on:
